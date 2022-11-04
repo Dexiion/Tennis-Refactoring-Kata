@@ -16,23 +16,25 @@ namespace Tennis
 
         public string GetScore()
         {
-            string score;
             if (Player1Score < 4 && Player2Score < 4 && Player1Score + Player2Score < 6)
             {
                 return HandleScore();
             }
 
-            if (Player1Score == Player2Score)
-                return "Deuce";
-            
-            score = Player1Score > Player2Score ? Player1Name : Player2Name;
-            return (Player1Score - Player2Score) * (Player1Score - Player2Score) == 1 ? "Advantage " + score : "Win for " + score;
+            return Player1Score == Player2Score ? "Deuce" : HandleAdvantageScore();
+        }
+
+        private string HandleAdvantageScore()
+        {
+            var score = Player1Score > Player2Score ? Player1Name : Player2Name;
+            return (Player1Score - Player2Score) * (Player1Score - Player2Score) == 1
+                ? "Advantage " + score
+                : "Win for " + score;
         }
 
         private string HandleScore()
         {
-            string score;
-            score = Words[Player1Score];
+            var score = Words[Player1Score];
             return Player1Score == Player2Score ? score + "-All" : score + "-" + Words[Player2Score];
         }
 
