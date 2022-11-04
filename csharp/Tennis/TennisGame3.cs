@@ -6,6 +6,7 @@ namespace Tennis
         private int Player1Score;
         private string Player1Name;
         private string Player2Name;
+        private string[] Words = { "Love", "Fifteen", "Thirty", "Forty" };
 
         public TennisGame3(string player1Name, string player2Name)
         {
@@ -18,15 +19,21 @@ namespace Tennis
             string score;
             if (Player1Score < 4 && Player2Score < 4 && Player1Score + Player2Score < 6)
             {
-                string[] words = { "Love", "Fifteen", "Thirty", "Forty" };
-                score = words[Player1Score];
-                return Player1Score == Player2Score ? score + "-All" : score + "-" + words[Player2Score];
+                return HandleScore();
             }
 
             if (Player1Score == Player2Score)
                 return "Deuce";
+            
             score = Player1Score > Player2Score ? Player1Name : Player2Name;
             return (Player1Score - Player2Score) * (Player1Score - Player2Score) == 1 ? "Advantage " + score : "Win for " + score;
+        }
+
+        private string HandleScore()
+        {
+            string score;
+            score = Words[Player1Score];
+            return Player1Score == Player2Score ? score + "-All" : score + "-" + Words[Player2Score];
         }
 
         public void WonPoint(string playerName)
