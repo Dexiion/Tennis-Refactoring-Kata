@@ -2,41 +2,39 @@ namespace Tennis
 {
     public class TennisGame3 : ITennisGame
     {
-        private int p2;
-        private int p1;
-        private string p1N;
-        private string p2N;
+        private int Player2Score;
+        private int Player1Score;
+        private string Player1Name;
+        private string Player2Name;
 
         public TennisGame3(string player1Name, string player2Name)
         {
-            p1N = player1Name;
-            p2N = player2Name;
+            Player1Name = player1Name;
+            Player2Name = player2Name;
         }
 
         public string GetScore()
         {
-            string s;
-            if (p1 < 4 && p2 < 4 && p1 + p2 < 6)
+            string score;
+            if (Player1Score < 4 && Player2Score < 4 && Player1Score + Player2Score < 6)
             {
-                string[] p = { "Love", "Fifteen", "Thirty", "Forty" };
-                s = p[p1];
-                return p1 == p2 ? s + "-All" : s + "-" + p[p2];
+                string[] words = { "Love", "Fifteen", "Thirty", "Forty" };
+                score = words[Player1Score];
+                return Player1Score == Player2Score ? score + "-All" : score + "-" + words[Player2Score];
             }
-            else
-            {
-                if (p1 == p2)
-                    return "Deuce";
-                s = p1 > p2 ? p1N : p2N;
-                return (p1 - p2) * (p1 - p2) == 1 ? "Advantage " + s : "Win for " + s;
-            }
+
+            if (Player1Score == Player2Score)
+                return "Deuce";
+            score = Player1Score > Player2Score ? Player1Name : Player2Name;
+            return (Player1Score - Player2Score) * (Player1Score - Player2Score) == 1 ? "Advantage " + score : "Win for " + score;
         }
 
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                p1 += 1;
+                Player1Score += 1;
             else
-                p2 += 1;
+                Player2Score += 1;
         }
 
     }
