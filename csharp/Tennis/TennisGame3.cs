@@ -4,9 +4,9 @@ namespace Tennis
     {
         private int Player2Score;
         private int Player1Score;
-        private string Player1Name;
-        private string Player2Name;
-        private string[] Words = { "Love", "Fifteen", "Thirty", "Forty" };
+        private readonly string Player1Name;
+        private readonly string Player2Name;
+        private readonly string[] Words = { "Love", "Fifteen", "Thirty", "Forty" };
 
         public TennisGame3(string player1Name, string player2Name)
         {
