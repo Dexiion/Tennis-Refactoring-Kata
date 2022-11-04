@@ -26,10 +26,10 @@ namespace Tennis
 
         private string HandleAdvantageScore()
         {
-            var score = Player1Score > Player2Score ? Player1Name : Player2Name;
+            var winningPlayer = Player1Score > Player2Score ? Player1Name : Player2Name;
             return (Player1Score - Player2Score) * (Player1Score - Player2Score) == 1
-                ? "Advantage " + score
-                : "Win for " + score;
+                ? "Advantage " + winningPlayer
+                : "Win for " + winningPlayer;
         }
 
         private string HandleScore()
